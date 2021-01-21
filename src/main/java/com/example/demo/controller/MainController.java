@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.SqsMessageSender;
+import com.example.demo.vo.Person;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,13 +17,14 @@ public class MainController {
 	private final SqsMessageSender messageSender;
 	
 	@PostMapping("/message")
-	public void sendMessage(@RequestBody String message) {
-		messageSender.sendMessage(message);
+	public void sendMessage(@RequestBody Person person) {
+		messageSender.sendMessage(person);
 	}
 	
 	@GetMapping("/message")
 	public void getMessage() {
 		messageSender.getMessage();
 	}
+	
 	
 }

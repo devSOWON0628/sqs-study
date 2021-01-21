@@ -4,4 +4,8 @@ cloud:
       static: ap-northeast-2
     stack:
       auto: false
+logging:
+  charset:    console: 'UTF-8'
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level --- [%thread] %logger{35} : %msg %n'
 

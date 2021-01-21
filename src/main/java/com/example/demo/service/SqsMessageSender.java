@@ -32,12 +32,17 @@ public class SqsMessageSender {
 //		queueMessagingTemplate.send("sqs-study-sowon", newMessage);
 //	}
 	
-	public void sendMessage(String name) {
-		queueMessagingTemplate.convertAndSend("sqs-study-sowon",new Person(name,20));
-		LOGGER.info("sendMessage(String name)");
-	}
-	
-	
+//	public void sendMessage(String name) {
+//		queueMessagingTemplate.convertAndSend("sqs-study-sowon",new Person(name,20));
+//		LOGGER.info("sendMessage(String name)");
+//	}
+//	
+	public void sendMessage(Person person) {
+		queueMessagingTemplate.convertAndSend("sqs-study-sowon",person);
+		System.out.println("this 안녕");
+		System.out.println(person);
+		//LOGGER.info("SQS에 메시지 전송 : "+person);
+	}	
 
 	public void getMessage() {
 		Person person = queueMessagingTemplate.receiveAndConvert("sqs-study-sowon",Person.class);//("sqs-study-sowon", Person.class);
