@@ -25,5 +25,8 @@ public class PersonListener {
 		LOGGER.info("{}",person);
 		LOGGER.info("{}",headers);
 		LOGGER.info("{}",ack!=null);
+		ack.acknowledge();	//메시지 delete
 	}
+	
+	
 }
