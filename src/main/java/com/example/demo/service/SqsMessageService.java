@@ -18,15 +18,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Service
-public class SqsMessageSender {
+public class SqsMessageService {
 	private final QueueMessagingTemplate queueMessagingTemplate;
 	
-	private static final Logger LOGGER=LogManager.getLogger(SqsMessageSender.class);
+	private static final Logger LOGGER=LogManager.getLogger(SqsMessageService.class);
 	
 	@Autowired
-	public SqsMessageSender(AmazonSQS amazonSqs) {
-		this.queueMessagingTemplate = new QueueMessagingTemplate((AmazonSQSAsync)amazonSqs);
+	public SqsMessageService(AmazonSQSAsync amazonSqsAsync) {
+		this.queueMessagingTemplate = new QueueMessagingTemplate(amazonSqsAsync);
 	}
+	
 //	public void sendMessage(String message) {
 //		Message<String> newMessage = MessageBuilder.withPayload(message).build();
 //		queueMessagingTemplate.send("sqs-study-sowon", newMessage);
@@ -35,15 +36,9 @@ public class SqsMessageSender {
 	public void sendMessage(Person person) {
 		queueMessagingTemplate.convertAndSend("sqs-study-sowon",person);
 //		queueMessagingTemplate.convertAndSend("sqs-study-sowon",new Person(name,20));
-
 		LOGGER.info("SQS에 메시지 전송 : "+person);
 	}	
 
-	public void getMessage() {
-		Person person = queueMessagingTemplate.receiveAndConvert("sqs-study-sowon",Person.class);//("sqs-study-sowon", Person.class);
-		System.out.println("SQS에서 받은 값 "+ person.toString());
-		
-	}
 	
 
 	

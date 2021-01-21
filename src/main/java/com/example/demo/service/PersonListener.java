@@ -10,15 +10,15 @@ import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.sqs.model.SendMessageResult;
 import com.example.demo.vo.Person;
 
-import lombok.extern.slf4j.Slf4j;
 
-
-@Component
+@Service
 public class PersonListener {
-	private static final Logger LOGGER=LogManager.getLogger(SqsMessageSender.class);
+	private static final Logger LOGGER=LogManager.getLogger(PersonListener.class);
 
 	@SqsListener(value="sqs-study-sowon", deletionPolicy = SqsMessageDeletionPolicy.NEVER)
 	public void listen(@Payload Person person, @Headers Map<String, String> headers, Acknowledgment ack) {
@@ -27,6 +27,4 @@ public class PersonListener {
 		LOGGER.info("{}",ack!=null);
 		ack.acknowledge();	//메시지 delete
 	}
-	
-	
 }

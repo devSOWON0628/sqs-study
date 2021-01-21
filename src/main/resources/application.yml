@@ -7,7 +7,7 @@ cloud:
 logging:
   charset:    console: 'UTF-8'
   pattern:
-    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level --- [%thread] %logger{35} : %msg %n'
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%-5level] [%thread] %logger{35} : %msg %n'
   level:    com:
       amazonaws:
         util:
