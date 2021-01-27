@@ -20,7 +20,7 @@ import com.example.demo.vo.Person;
 public class PersonListener {
 	private static final Logger LOGGER=LogManager.getLogger(PersonListener.class);
 
-	@SqsListener(value="sqs-study-sowon", deletionPolicy = SqsMessageDeletionPolicy.NEVER)
+	@SqsListener(value="${sqs.name}", deletionPolicy = SqsMessageDeletionPolicy.NEVER)
 	public void listen(@Payload Person person, @Headers Map<String, String> headers, Acknowledgment ack) {
 		LOGGER.info("{}",person);
 		LOGGER.info("{}",headers);

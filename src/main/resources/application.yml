@@ -1,15 +1,24 @@
-cloud:
-  aws:
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
 logging:
-  charset:    console: 'UTF-8'
+  charset:
+    console: 'UTF-8'
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} [%-5level] [%thread] %logger{35} : %msg %n'
-  level:    com:
+  level:
+    com:
       amazonaws:
         util:
           EC2MetadataUtils: error
 
+cloud:
+  aws:
+    credentials:
+      access-key: [access-key]
+      secret-key: [secret-key]
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+      
+
+sqs:
+  name: [sqs name]
